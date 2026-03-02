@@ -5,6 +5,7 @@ layout: null
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- Ana sayfalar -->
   <url>
     <loc>{{ site.url }}/</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="{{ site.url }}/"/>
@@ -20,5 +21,55 @@ layout: null
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- App ve extension sayfaları -->
+  {% assign tr_apps = site.apps | where: "lang", "tr" | where: "type", "app" %}
+  {% assign en_apps = site.apps | where: "lang", "en" | where: "type", "app" %}
+
+  {% for app in tr_apps %}
+  {% assign en_counterpart = en_apps | where: "slug", app.slug | first %}
+  <url>
+    <loc>{{ site.url }}{{ app.url }}</loc>
+    {% if en_counterpart %}
+    <xhtml:link rel="alternate" hreflang="tr" href="{{ site.url }}{{ app.url }}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}{{ en_counterpart.url }}"/>
+    {% endif %}
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {% endfor %}
+
+  {% for app in en_apps %}
+  <url>
+    <loc>{{ site.url }}{{ app.url }}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {% endfor %}
+
+  <!-- Gizlilik politikası sayfaları -->
+  {% assign tr_privacies = site.apps | where: "lang", "tr" | where: "type", "privacy" %}
+  {% assign en_privacies = site.apps | where: "lang", "en" | where: "type", "privacy" %}
+
+  {% for p in tr_privacies %}
+  {% assign en_p = en_privacies | where: "slug", p.slug | first %}
+  <url>
+    <loc>{{ site.url }}{{ p.url }}</loc>
+    {% if en_p %}
+    <xhtml:link rel="alternate" hreflang="tr" href="{{ site.url }}{{ p.url }}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}{{ en_p.url }}"/>
+    {% endif %}
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  {% endfor %}
+
+  {% for p in en_privacies %}
+  <url>
+    <loc>{{ site.url }}{{ p.url }}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  {% endfor %}
 
 </urlset>

@@ -7,9 +7,25 @@ permalink: /404.html
 
 <section style="min-height:80vh; display:flex; align-items:center; justify-content:center; text-align:center;">
   <div>
-    <div style="font-family:'JetBrains Mono',monospace; font-size:6rem; font-weight:800; color:#00D2B4; line-height:1;">404</div>
-    <h1 style="font-size:1.5rem; color:#E8EDF5; margin:16px 0 8px;">Sayfa Bulunamadı</h1>
-    <p style="color:#7A8BA0; margin-bottom:32px;">Aradığın sayfa mevcut değil veya taşınmış olabilir.</p>
-    <a href="/" class="btn btn-primary">Ana Sayfaya Dön</a>
+    <div style="font-family:'JetBrains Mono',monospace; font-size:6rem; font-weight:800; color:#F5A623; line-height:1;">404</div>
+
+    <div id="content-tr">
+      <h1 style="font-size:1.5rem; color:#E8EDF5; margin:16px 0 8px;">Sayfa Bulunamadı</h1>
+      <p style="color:#7A8BA0; margin-bottom:32px;">Aradığın sayfa mevcut değil veya taşınmış olabilir.</p>
+      <a href="/" class="btn btn-primary">Ana Sayfaya Dön</a>
+    </div>
+
+    <div id="content-en" style="display:none;">
+      <h1 style="font-size:1.5rem; color:#E8EDF5; margin:16px 0 8px;">Page Not Found</h1>
+      <p style="color:#7A8BA0; margin-bottom:32px;">The page you're looking for doesn't exist or may have been moved.</p>
+      <a href="/en/" class="btn btn-primary">Back to Home</a>
+    </div>
   </div>
 </section>
+
+<script>
+  if (window.location.pathname.startsWith('/en')) {
+    document.getElementById('content-tr').style.display = 'none';
+    document.getElementById('content-en').style.display = 'block';
+  }
+</script>
