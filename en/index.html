@@ -1,0 +1,167 @@
+---
+layout: default
+lang: en
+title: "Home"
+description: "Turkish software company building innovative mobile applications — Verb Flow and more."
+permalink: /en/
+---
+
+{% assign t = site.data.en %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="grid-bg"></div>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                {{ t.hero.badge }}
+            </div>
+
+            <h1>
+                {{ t.hero.title }}<br>
+                <span class="accent">{{ t.hero.title_accent }}</span>
+            </h1>
+
+            <p class="hero-subtitle">{{ t.hero.subtitle }}</p>
+
+            <div class="hero-ctas">
+                <a href="#apps" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2"
+                            width="14" height="20" rx="2" /><line x1="12" y1="18" x2="12" y2="18" /></svg>
+                    {{ t.hero.cta_apps }}
+                </a>
+                <a href="{{ site.social.play_store }}" target="_blank" rel="noopener" class="btn btn-outline">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path
+                            d="M3 20.5v-17c0-.83 1-.83 1.5-.5l14 8.5a.85.85 0 010 1.5l-14 8.5c-.5.33-1.5.33-1.5-.5z" /></svg>
+                    {{ t.hero.cta_store }}
+                </a>
+                <a href="{{ t.contact.chrome_store_url }}" target="_blank" rel="noopener" class="btn btn-outline"
+                    style="border-color:rgba(0,168,232,0.3);color:#00A8E8;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /><line
+                            x1="21.17" y1="8" x2="12" y2="8" /><line x1="3.95" y1="6.06" x2="8.54" y2="14" /><line
+                            x1="10.88" y1="21.94" x2="15.46" y2="14" /></svg>
+                    Chrome Web Store
+                </a>
+                <span class="btn btn-outline" style="opacity:0.4;cursor:not-allowed;border-style:dashed;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" /></svg>
+                    App Store
+                    <span
+                        style="font-size:0.7rem;background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.25);color:#F5A623;padding:2px 8px;border-radius:4px;margin-left:4px;font-family:'JetBrains Mono',monospace;">SOON</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>SCROLL</span>
+    </div>
+</section>
+
+<!-- STATS -->
+{% assign s = site.data.stats %}
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number">{{ s.average_rating }}</div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number">{{ s.total_downloads }}</div>
+        <div class="stat-label">Total Downloads</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number">{{ s.total_apps }}</div>
+        <div class="stat-label">Published Apps</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number">{{ s.founded }}</div>
+        <div class="stat-label">Founded</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPS -->
+<section class="section apps-section" id="apps">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-label">// our apps</div>
+            <h2>{{ t.apps.section_title }}</h2>
+            <p>{{ t.apps.section_subtitle }}</p>
+        </div>
+
+        {% assign en_apps = site.apps | where: "lang", "en" | where: "type", "app" %}
+        {% for app in en_apps %}
+        {% include app-card.html app=app lang="en" %}
+        {% endfor %}
+
+        <!-- COMING SOON -->
+        <div
+            style="margin-top:32px;padding:40px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.08);border-radius:24px;text-align:center;"
+            class="reveal">
+            <div
+                style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:#4A5A70;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">//
+                coming soon</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:#E8EDF5;">More
+                Apps Coming</div>
+            <div style="color:#7A8BA0;font-size:0.9rem;margin-top:8px;">Stay tuned for more innovative
+                applications</div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-label">// contact</div>
+            <h2>{{ t.contact.title }}</h2>
+            <p>{{ t.contact.subtitle }}</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-card reveal">
+                <div class="contact-icon">✉️</div>
+                <h3>{{ t.contact.email_label }}</h3>
+                <a href="mailto:m.sahinsocial@gmail.com">m.sahinsocial@gmail.com</a>
+            </div>
+
+            <div class="contact-card reveal">
+                <div class="contact-icon">👨‍💻</div>
+                <h3>Developer</h3>
+                <p>{{ t.contact.developer }}</p>
+            </div>
+
+            <div class="contact-card reveal">
+                <div class="contact-icon">🎮</div>
+                <h3>Google Play</h3>
+                <a href="{{ site.social.play_store }}" target="_blank" rel="noopener">Our Developer Page</a>
+            </div>
+
+            <div class="contact-card reveal">
+                <div class="contact-icon">🌐</div>
+                <h3>Chrome Web Store</h3>
+                <a href="https://chromewebstore.google.com/search/Bili%C5%9Fim%20Diyar%C4%B1?hl=en" target="_blank"
+                    rel="noopener">Our Extensions</a>
+            </div>
+
+            <div class="contact-card reveal" style="opacity:0.5;cursor:not-allowed;">
+                <div class="contact-icon">🍎</div>
+                <h3>App Store</h3>
+                <span style="color:#4A5A70;font-size:0.88rem;display:inline-flex;align-items:center;gap:6px;">
+                    Coming Soon
+                    <span
+                        style="font-size:0.72rem;background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.25);color:#F5A623;padding:2px 8px;border-radius:4px;font-family:'JetBrains Mono',monospace;">SOON</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>

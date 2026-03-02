@@ -1,0 +1,38 @@
+nav:
+  home: "Home"
+  apps: "Apps"
+  contact: "Contact"
+
+hero:
+  badge: "Turkish Software Developer"
+  title: "Building the"
+  title_accent: "Digital Future Together"
+  subtitle: "User-centric, innovative mobile applications. Every line of code crafted for a better experience."
+  cta_apps: "Our Apps"
+  cta_store: "View on Play Store"
+
+apps:
+  section_title: "Our Apps"
+  section_subtitle: "Mobile solutions built with modern technology"
+  download: "Download"
+  store_link: "View on Play Store"
+  rating: "Rating"
+  reviews: "Reviews"
+
+contact:
+  title: "Contact"
+  subtitle: "Get in touch with us"
+  email_label: "Email"
+  developer: "Muhammet Abdullah ŞAHİN"
+  play_store_label: "Google Play"
+  play_store_text: "Our Developer Page"
+  chrome_store_label: "Chrome Web Store"
+  chrome_store_text: "Our Extensions"
+  chrome_store_url: "https://chromewebstore.google.com/search/Bili%C5%9Fim%20Diyar%C4%B1?hl=en"
+  app_store_label: "App Store"
+  app_store_soon: "Coming Soon"
+
+footer:
+  rights: "All rights reserved."
+  privacy: "Privacy Policy"
+  made: "Made with ❤️ in Turkey"

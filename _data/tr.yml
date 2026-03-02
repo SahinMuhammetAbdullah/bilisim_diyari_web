@@ -1,0 +1,38 @@
+nav:
+  home: "Ana Sayfa"
+  apps: "Uygulamalar"
+  contact: "İletişim"
+
+hero:
+  badge: "Türk Yazılım Geliştirici"
+  title: "Dijital Geleceği"
+  title_accent: "Birlikte İnşa Ediyoruz"
+  subtitle: "Kullanıcı odaklı, yenilikçi mobil uygulamalar. Her satır kod, daha iyi bir deneyim için."
+  cta_apps: "Uygulamalarımız"
+  cta_store: "Play Store'da Gör"
+
+apps:
+  section_title: "Uygulamalarımız"
+  section_subtitle: "Modern teknoloji ile geliştirdiğimiz mobil çözümler"
+  download: "İndir"
+  store_link: "Play Store'da Gör"
+  rating: "Puan"
+  reviews: "Yorum"
+
+contact:
+  title: "İletişim"
+  subtitle: "Bizimle iletişime geçin"
+  email_label: "E-posta"
+  developer: "Muhammet Abdullah ŞAHİN"
+  play_store_label: "Google Play"
+  play_store_text: "Geliştirici Sayfamız"
+  chrome_store_label: "Chrome Web Store"
+  chrome_store_text: "Eklentilerimiz"
+  chrome_store_url: "https://chromewebstore.google.com/search/Bili%C5%9Fim%20Diyar%C4%B1?hl=tr"
+  app_store_label: "App Store"
+  app_store_soon: "Yakında"
+
+footer:
+  rights: "Tüm hakları saklıdır."
+  privacy: "Gizlilik Politikası"
+  made: "Türkiye'de ❤️ ile yapıldı"

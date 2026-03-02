@@ -1,0 +1,90 @@
+{% assign lang = include.lang | default: 'tr' %}
+{% assign app = include.app %}
+
+<div class="app-card reveal">
+    <div class="app-card-inner">
+        <div class="app-header">
+            {% if app.icon %}
+            <img src="{{ app.icon }}" alt="{{ app.title }}" class="app-icon">
+            {% else %}
+            <div class="app-icon-placeholder"
+                {% if app.platform == 'chrome' %}style="background:linear-gradient(135deg,#00A8E8,#0072FF);" {% endif
+                %}>
+                {{ app.title | slice: 0, 2 | upcase }}
+            </div>
+            {% endif %}
+            <div class="app-title-group">
+                <h3>{{ app.title }}</h3>
+                <div class="app-tagline">{{ app.tagline }}</div>
+            </div>
+            <div class="app-badge"
+                {% if app.platform == 'chrome'
+                %}style="background:rgba(0,168,232,0.1);border-color:rgba(0,168,232,0.25);color:#00A8E8;" {% endif %}>
+                {% if app.platform == 'chrome' %}Chrome Extension{% else %}{{ app.category }}{% endif %}
+            </div>
+        </div>
+
+        <p class="app-description">{{ app.description }}</p>
+
+        {% if app.features %}
+        <div class="app-features">
+            {% for f in app.features %}<span class="feat-tag">{{ f }}</span>{% endfor %}
+        </div>
+        {% endif %}
+
+        {% if app.rating %}
+        <div class="app-rating">
+            <span class="stars">★★★★★</span>
+            <span>{{ app.rating }}</span>
+            {% if app.review_count %}<span class="count">({{ app.review_count }} {% if lang == 'en' %}reviews{% else
+                %}puan{% endif %})</span>{% endif %}
+        </div>
+        {% endif %}
+
+        <div class="app-actions">
+            <a href="{{ app.url }}" class="btn btn-primary">
+                {% if lang == 'en' %}View Details{% else %}Detayları İncele{% endif %} →
+            </a>
+
+            {% if app.platform == 'chrome' %}
+            {% if app.chrome_store_url %}
+            <a href="{{ app.chrome_store_url }}" target="_blank" rel="noopener"
+                class="btn" style="background:rgba(0,168,232,0.12);border:1px solid rgba(0,168,232,0.3);color:#00A8E8;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /><line x1="21.17"
+                        y1="8" x2="12" y2="8" /><line x1="3.95" y1="6.06" x2="8.54" y2="14" /><line x1="10.88"
+                        y1="21.94" x2="15.46" y2="14" /></svg>
+                Chrome Web Store →
+            </a>
+            {% endif %}
+            {% if app.website %}
+            <a href="{{ app.website }}" target="_blank" rel="noopener"
+                class="btn btn-outline" style="border-color:rgba(245,166,35,0.3);color:#F5A623;">
+                🌍 {{ app.website | remove: 'https://' }}
+            </a>
+            {% endif %}
+            {% else %}
+            {% if app.play_store_url %}
+            <a href="{{ app.play_store_url }}" target="_blank" rel="noopener" class="btn btn-outline">
+                Play Store →
+            </a>
+            {% endif %}
+            {% if app.app_store_url == 'coming_soon' %}
+            <span class="btn-app-store-soon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path
+                        d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" /></svg>
+                App Store
+                <span
+                    style="font-size:0.7rem;background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px;margin-left:4px;">
+                    {% if lang == 'en' %}Soon{% else %}Yakında{% endif %}
+                </span>
+            </span>
+            {% elsif app.app_store_url %}
+            <a href="{{ app.app_store_url }}" target="_blank" rel="noopener" class="btn btn-outline">
+                App Store →
+            </a>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>

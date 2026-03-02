@@ -1,0 +1,141 @@
+---
+layout: default
+---
+{% assign lang = page.lang | default: 'tr' %}
+{% if lang == 'en' %}{% assign base = '/en' %}{% else %}{% assign base = '' %}{% endif %}
+
+<section class="detail-page">
+<div class="container">
+
+  <!-- Breadcrumb -->
+  <div class="detail-breadcrumb reveal">
+    <a href="{{ base }}/">{% if lang == 'en' %}Home{% else %}Ana Sayfa{% endif %}</a>
+    <span class="sep">›</span>
+    <a href="{{ base }}/#apps">{% if lang == 'en' %}Apps{% else %}Uygulamalar{% endif %}</a>
+    <span class="sep">›</span>
+    <span class="current">{{ page.title }}</span>
+  </div>
+
+  <!-- Header -->
+  <div class="detail-header reveal">
+    {% if page.icon %}
+    <img src="{{ page.icon }}" alt="{{ page.title }}" class="detail-icon">
+    {% else %}
+    <div class="detail-icon-placeholder" style="background:linear-gradient(135deg,#00A8E8,#0072FF);">
+      {{ page.title | slice: 0, 2 | upcase }}
+    </div>
+    {% endif %}
+
+    <div class="detail-title-group">
+      <div class="detail-type">// chrome extension</div>
+      <h1>{{ page.title }}</h1>
+      <div class="detail-tagline">{{ page.tagline }}</div>
+    </div>
+
+    <div class="detail-cta">
+      {% if page.chrome_store_url %}
+      <a href="{{ page.chrome_store_url }}" target="_blank" rel="noopener"
+         class="btn" style="background:#00A8E8;color:#fff;box-shadow:0 0 30px rgba(0,168,232,0.3);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="21.17" y1="8" x2="12" y2="8"/>
+          <line x1="3.95" y1="6.06" x2="8.54" y2="14"/>
+          <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
+        </svg>
+        {% if lang == 'en' %}Add to Chrome{% else %}Chrome'a Ekle{% endif %}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="detail-grid">
+
+    <!-- Ana İçerik -->
+    <div class="detail-main reveal">
+      <div class="markdown-body">{{ content }}</div>
+
+      {% if page.features %}
+      <div class="detail-features">
+        <div class="features-label">
+          {% if lang == 'en' %}Features{% else %}Özellikler{% endif %}
+        </div>
+        <div class="app-features">
+          {% for f in page.features %}<span class="feat-tag">{{ f }}</span>{% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Sidebar -->
+    <div class="detail-sidebar reveal">
+
+      {% if page.rating %}
+      <div class="sidebar-item">
+        <div class="sidebar-label">{% if lang == 'en' %}Rating{% else %}Puan{% endif %}</div>
+        <div class="sidebar-rating">
+          ★★★★★
+          <span>{{ page.rating }}</span>
+          {% if page.review_count %}<small>({{ page.review_count }})</small>{% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if page.users %}
+      <div class="sidebar-item">
+        <div class="sidebar-label">{% if lang == 'en' %}Users{% else %}Kullanıcı{% endif %}</div>
+        <div class="sidebar-value">{{ page.users }}</div>
+      </div>
+      {% endif %}
+
+      {% if page.version %}
+      <div class="sidebar-item">
+        <div class="sidebar-label">{% if lang == 'en' %}Version{% else %}Sürüm{% endif %}</div>
+        <div class="sidebar-value">{{ page.version }}</div>
+      </div>
+      {% endif %}
+
+      {% if page.updated %}
+      <div class="sidebar-item">
+        <div class="sidebar-label">{% if lang == 'en' %}Last Updated{% else %}Son Güncelleme{% endif %}</div>
+        <div class="sidebar-value">{{ page.updated }}</div>
+      </div>
+      {% endif %}
+
+      <div class="sidebar-item">
+        <div class="sidebar-label">{% if lang == 'en' %}Developer{% else %}Geliştirici{% endif %}</div>
+        <div class="sidebar-value">Bilişim Diyarı</div>
+      </div>
+
+      <div class="sidebar-item">
+        <div class="sidebar-label">{% if lang == 'en' %}Type{% else %}Tür{% endif %}</div>
+        <div class="sidebar-value">Chrome Extension</div>
+      </div>
+
+      <div class="sidebar-actions">
+        {% if page.website %}
+        <a href="{{ page.website }}" target="_blank" rel="noopener" class="sidebar-btn sidebar-btn-website">
+          🌍 {{ page.website | remove: 'https://' }}
+        </a>
+        {% endif %}
+
+        {% if page.chrome_store_url %}
+        <a href="{{ page.chrome_store_url }}" target="_blank" rel="noopener" class="sidebar-btn sidebar-btn-chrome">
+          🌐 Chrome Web Store →
+        </a>
+        {% endif %}
+
+        {% assign privacy_page = site.apps | where: "slug", page.slug | where: "lang", lang | where: "type", "privacy" | first %}
+        {% if privacy_page %}
+        <a href="{{ privacy_page.url }}" class="sidebar-btn sidebar-btn-privacy">
+          🔒 {% if lang == 'en' %}Privacy Policy{% else %}Gizlilik Politikası{% endif %}
+        </a>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</section>

@@ -1,0 +1,36 @@
+title: "Bilişim Diyarı"
+title_en: "Bilişim Diyarı"
+description: "Yenilikçi mobil uygulamalar geliştiren Türk yazılım firması."
+description_en: "Turkish software company building innovative mobile applications."
+url: "https://www.bilisimdiyari.com.tr"
+baseurl: ""
+
+author:
+  name: "Bilişim Diyarı"
+  email: "m.sahinsocial@gmail.com"
+
+social:
+  play_store: "https://play.google.com/store/apps/dev?id=8353039126398201724"
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+collections:
+  apps:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "apps"
+    values:
+      layout: "app"
+  - scope:
+      path: ""
+    values:
+      image: "/assets/images/og-image.png"
+
+timezone: "Europe/Istanbul"
+encoding: "utf-8"

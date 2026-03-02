@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'tr' }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% assign lang = page.lang | default: 'tr' %}
+    {% assign t = site.data[lang] %}
+
+    <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+    <meta name="description"
+      content="{% if page.description %}{{ page.description }}{% elsif lang == 'en' %}{{ site.description_en }}{% else %}{{ site.description }}{% endif %}">
+
+    <!-- Canonical & Hreflang -->
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    {% if page.lang == 'tr' or page.lang == nil %}
+    <link rel="alternate" hreflang="tr" href="{{ site.url }}{{ page.url }}">
+    <link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ page.url | remove: '/en' }}">
+    {% else %}
+    <link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url }}">
+    <link rel="alternate" hreflang="tr" href="{{ site.url }}{{ page.url | replace: '/en/', '/' }}">
+    {% endif %}
+    <link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}">
+    <meta property="og:description"
+      content="{% if page.description %}{{ page.description }}{% elsif lang == 'en' %}{{ site.description_en }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ site.url }}/assets/images/og-image.png">
+    <meta property="og:locale" content="{% if lang == 'en' %}en_US{% else %}tr_TR{% endif %}">
+    <meta property="og:site_name" content="{{ site.title }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ site.title }}">
+    <meta name="twitter:description"
+      content="{% if lang == 'en' %}{{ site.description_en }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="twitter:image" content="{{ site.url }}/assets/images/og-image.png">
+
+    <!-- Jekyll SEO Tag -->
+    {% seo %}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/icon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon/favicon.svg">
+    <link rel="shortcut icon" href="/assets/icon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Bilişim Diyarı">
+    <link rel="manifest" href="/assets/icon/site.webmanifest">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Bilişim Diyarı",
+    "url": "{{ site.url }}",
+    "email": "m.sahinsocial@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Tokat",
+      "postalCode": "60000",
+      "addressCountry": "TR"
+    },
+    "sameAs": [
+      "{{ site.social.play_store }}"
+    ]
+  }
+  </script>
+  </head>
+  <body>
+
+    {% assign lang = page.lang | default: 'tr' %}
+    {% assign t = site.data[lang] %}
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <div class="nav-inner">
+          <a href="{% if lang == 'en' %}/en/{% else %}/{% endif %}" class="nav-logo">
+            <span class="logo-dot"></span>
+            Bilişim Diyarı
+          </a>
+
+          <ul class="nav-links">
+            <li><a href="{% if lang == 'en' %}/en/{% else %}/{% endif %}" {% if page.url == '/' or page.url == '/en/'
+                %}class="active" {% endif %}>{{ t.nav.home }}</a></li>
+            <li><a href="{% if lang == 'en' %}/en/#apps{% else %}/#apps{% endif %}">{{ t.nav.apps }}</a></li>
+            <li><a href="{% if lang == 'en' %}/en/#contact{% else %}/#contact{% endif %}">{{ t.nav.contact }}</a></li>
+          </ul>
+
+          <div class="nav-right">
+            <div class="lang-switcher">
+              <a href="/" {% if lang == 'tr' %}class="active" {% endif %}>TR</a>
+              <a href="/en/" {% if lang == 'en' %}class="active" {% endif %}>EN</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <span class="mobile-close" id="mobileClose">✕</span>
+      <a href="{% if lang == 'en' %}/en/{% else %}/{% endif %}">{{ t.nav.home }}</a>
+      <a href="{% if lang == 'en' %}/en/#apps{% else %}/#apps{% endif %}">{{ t.nav.apps }}</a>
+      <a href="{% if lang == 'en' %}/en/#contact{% else %}/#contact{% endif %}">{{ t.nav.contact }}</a>
+      <div class="lang-switcher" style="margin-top:20px">
+        <a href="/" {% if lang == 'tr' %}class="active" {% endif %}>TR</a>
+        <a href="/en/" {% if lang == 'en' %}class="active" {% endif %}>EN</a>
+      </div>
+    </div>
+
+    {{ content }}
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-logo">Bilişim Diyarı</div>
+          <ul class="footer-links">
+            <li><a href="{% if lang == 'en' %}/en/{% else %}/{% endif %}">{{ t.nav.home }}</a></li>
+            <li><a href="{% if lang == 'en' %}/en/#apps{% else %}/#apps{% endif %}">{{ t.nav.apps }}</a></li>
+            <li><a href="{% if lang == 'en' %}/en/#contact{% else %}/#contact{% endif %}">{{ t.nav.contact }}</a></li>
+          </ul>
+        </div>
+        <div class="footer-copy">
+          © {{ 'now' | date: '%Y' }} Bilişim Diyarı — {{ t.footer.rights }} · {{ t.footer.made }}
+        </div>
+      </div>
+    </footer>
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  </body>
+</html>
