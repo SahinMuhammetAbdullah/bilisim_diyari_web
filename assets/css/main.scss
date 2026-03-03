@@ -1010,6 +1010,16 @@ footer {
       color: $text-muted;
       &:hover { border-color: rgba($teal, 0.3); color: $teal; }
     }
+
+    &-terms {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid $border;
+      color: $text-muted;
+      &:hover {
+        border-color: rgba(0,168,232,0.3);
+        color: #00A8E8;
+      }
+    }
   }
 }
 

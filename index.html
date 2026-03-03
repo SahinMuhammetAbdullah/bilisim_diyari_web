@@ -6,7 +6,17 @@ description: "Yenilikçi mobil uygulamalar geliştiren Türk yazılım firması 
 ---
 
 {% assign t = site.data.tr %}
-
+<script>
+  if (!sessionStorage.getItem('lang-chosen')) {
+    const lang = navigator.language || navigator.userLanguage || '';
+    if (!lang.startsWith('tr')) {
+      sessionStorage.setItem('lang-chosen', 'en');
+      window.location.replace('/en/');
+    } else {
+      sessionStorage.setItem('lang-chosen', 'tr');
+    }
+  }
+</script>
 <!-- HERO -->
 <section class="hero">
   <div class="grid-bg"></div>

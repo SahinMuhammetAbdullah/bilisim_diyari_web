@@ -5,124 +5,134 @@ layout: default
 {% if lang == 'en' %}{% assign base = '/en' %}{% else %}{% assign base = '' %}{% endif %}
 
 <section class="detail-page">
-<div class="container">
+  <div class="container">
 
-  <!-- Breadcrumb -->
-  <div class="detail-breadcrumb reveal">
-    <a href="{{ base }}/">{% if lang == 'en' %}Home{% else %}Ana Sayfa{% endif %}</a>
-    <span class="sep">›</span>
-    <a href="{{ base }}/#apps">{% if lang == 'en' %}Apps{% else %}Uygulamalar{% endif %}</a>
-    <span class="sep">›</span>
-    <span class="current">{{ page.title }}</span>
-  </div>
-
-  <!-- Header -->
-  <div class="detail-header reveal">
-    {% if page.icon %}
-    <img src="{{ page.icon }}" alt="{{ page.title }}" class="detail-icon">
-    {% else %}
-    <div class="detail-icon-placeholder">{{ page.title | slice: 0, 2 | upcase }}</div>
-    {% endif %}
-
-    <div class="detail-title-group">
-      <div class="detail-type">// {{ page.category | downcase }}</div>
-      <h1>{{ page.title }}</h1>
-      <div class="detail-tagline">{{ page.tagline }}</div>
+    <!-- Breadcrumb -->
+    <div class="detail-breadcrumb reveal">
+      <a href="{{ base }}/">{% if lang == 'en' %}Home{% else %}Ana Sayfa{% endif %}</a>
+      <span class="sep">›</span>
+      <a href="{{ base }}/#apps">{% if lang == 'en' %}Apps{% else %}Uygulamalar{% endif %}</a>
+      <span class="sep">›</span>
+      <span class="current">{{ page.title }}</span>
     </div>
 
-    <div class="detail-cta">
-      {% if page.play_store_url %}
-      <a href="{{ page.play_store_url }}" target="_blank" rel="noopener" class="btn btn-primary">
-        ▶ {% if lang == 'en' %}Get on Play Store{% else %}Play Store'dan İndir{% endif %}
-      </a>
-      {% endif %}
-    </div>
-  </div>
-
-  <!-- Grid -->
-  <div class="detail-grid">
-
-    <!-- Ana İçerik -->
-    <div class="detail-main reveal">
-      <div class="markdown-body">{{ content }}</div>
-
-      {% if page.features %}
-      <div class="detail-features">
-        <div class="features-label">
-          {% if lang == 'en' %}Features{% else %}Özellikler{% endif %}
-        </div>
-        <div class="app-features">
-          {% for f in page.features %}<span class="feat-tag">{{ f }}</span>{% endfor %}
-        </div>
-      </div>
-      {% endif %}
-    </div>
-
-    <!-- Sidebar -->
-    <div class="detail-sidebar reveal">
-
-      {% if page.rating %}
-      <div class="sidebar-item">
-        <div class="sidebar-label">{% if lang == 'en' %}Rating{% else %}Puan{% endif %}</div>
-        <div class="sidebar-rating">
-          ★★★★★
-          <span>{{ page.rating }}</span>
-          {% if page.review_count %}<small>({{ page.review_count }})</small>{% endif %}
-        </div>
-      </div>
+    <!-- Header -->
+    <div class="detail-header reveal">
+      {% if page.icon %}
+      <img src="{{ page.icon }}" alt="{{ page.title }}" class="detail-icon">
+      {% else %}
+      <div class="detail-icon-placeholder">{{ page.title | slice: 0, 2 | upcase }}</div>
       {% endif %}
 
-      {% if page.category %}
-      <div class="sidebar-item">
-        <div class="sidebar-label">{% if lang == 'en' %}Category{% else %}Kategori{% endif %}</div>
-        <div class="sidebar-value">{{ page.category }}</div>
-      </div>
-      {% endif %}
-
-      {% if page.updated %}
-      <div class="sidebar-item">
-        <div class="sidebar-label">{% if lang == 'en' %}Last Updated{% else %}Son Güncelleme{% endif %}</div>
-        <div class="sidebar-value">{{ page.updated }}</div>
-      </div>
-      {% endif %}
-
-      <div class="sidebar-item">
-        <div class="sidebar-label">{% if lang == 'en' %}Developer{% else %}Geliştirici{% endif %}</div>
-        <div class="sidebar-value">Bilişim Diyarı</div>
+      <div class="detail-title-group">
+        <div class="detail-type">// {{ page.category | downcase }}</div>
+        <h1>{{ page.title }}</h1>
+        <div class="detail-tagline">{{ page.tagline }}</div>
       </div>
 
-      <div class="sidebar-actions">
+      <div class="detail-cta">
         {% if page.play_store_url %}
-        <a href="{{ page.play_store_url }}" target="_blank" rel="noopener"
-           class="sidebar-btn sidebar-btn-website">
-          ▶ Play Store →
-        </a>
-        {% endif %}
-
-        {% if page.app_store_url == 'coming_soon' %}
-        <span class="sidebar-btn sidebar-btn-privacy" style="opacity:0.45;cursor:not-allowed;border-style:dashed;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          App Store
-          <span style="font-size:0.68rem;background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.25);color:#F5A623;padding:1px 6px;border-radius:4px;margin-left:4px;font-family:'JetBrains Mono',monospace;">
-            {% if lang == 'en' %}SOON{% else %}YAKINDA{% endif %}
-          </span>
-        </span>
-        {% elsif page.app_store_url %}
-        <a href="{{ page.app_store_url }}" target="_blank" rel="noopener" class="sidebar-btn sidebar-btn-privacy">
-          App Store →
-        </a>
-        {% endif %}
-
-        {% assign privacy_page = site.apps | where: "slug", page.slug | where: "lang", lang | where: "type", "privacy" | first %}
-        {% if privacy_page %}
-        <a href="{{ privacy_page.url }}" class="sidebar-btn sidebar-btn-privacy">
-          🔒 {% if lang == 'en' %}Privacy Policy{% else %}Gizlilik Politikası{% endif %}
+        <a href="{{ page.play_store_url }}" target="_blank" rel="noopener" class="btn btn-primary">
+          ▶ {% if lang == 'en' %}Get on Play Store{% else %}Play Store'dan İndir{% endif %}
         </a>
         {% endif %}
       </div>
-
     </div>
-  </div>
 
-</div>
+    <!-- Grid -->
+    <div class="detail-grid">
+
+      <!-- Ana İçerik -->
+      <div class="detail-main reveal">
+        <div class="markdown-body">{{ content }}</div>
+
+        {% if page.features %}
+        <div class="detail-features">
+          <div class="features-label">
+            {% if lang == 'en' %}Features{% else %}Özellikler{% endif %}
+          </div>
+          <div class="app-features">
+            {% for f in page.features %}<span class="feat-tag">{{ f }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="detail-sidebar reveal">
+
+        {% if page.rating %}
+        <div class="sidebar-item">
+          <div class="sidebar-label">{% if lang == 'en' %}Rating{% else %}Puan{% endif %}</div>
+          <div class="sidebar-rating">
+            ★★★★★
+            <span>{{ page.rating }}</span>
+            {% if page.review_count %}<small>({{ page.review_count }})</small>{% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if page.category %}
+        <div class="sidebar-item">
+          <div class="sidebar-label">{% if lang == 'en' %}Category{% else %}Kategori{% endif %}</div>
+          <div class="sidebar-value">{{ page.category }}</div>
+        </div>
+        {% endif %}
+
+        {% if page.updated %}
+        <div class="sidebar-item">
+          <div class="sidebar-label">{% if lang == 'en' %}Last Updated{% else %}Son Güncelleme{% endif %}</div>
+          <div class="sidebar-value">{{ page.updated }}</div>
+        </div>
+        {% endif %}
+
+        <div class="sidebar-item">
+          <div class="sidebar-label">{% if lang == 'en' %}Developer{% else %}Geliştirici{% endif %}</div>
+          <div class="sidebar-value">Bilişim Diyarı</div>
+        </div>
+
+        <div class="sidebar-actions">
+          {% if page.play_store_url %}
+          <a href="{{ page.play_store_url }}" target="_blank" rel="noopener"
+            class="sidebar-btn sidebar-btn-website">
+            ▶ Play Store →
+          </a>
+          {% endif %}
+
+          {% if page.app_store_url == 'coming_soon' %}
+          <span class="sidebar-btn sidebar-btn-privacy" style="opacity:0.45;cursor:not-allowed;border-style:dashed;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" /></svg>
+            App Store
+            <span
+              style="font-size:0.68rem;background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.25);color:#F5A623;padding:1px 6px;border-radius:4px;margin-left:4px;font-family:'JetBrains Mono',monospace;">
+              {% if lang == 'en' %}SOON{% else %}YAKINDA{% endif %}
+            </span>
+          </span>
+          {% elsif page.app_store_url %}
+          <a href="{{ page.app_store_url }}" target="_blank" rel="noopener" class="sidebar-btn sidebar-btn-privacy">
+            App Store →
+          </a>
+          {% endif %}
+
+          {% assign privacy_page = site.apps | where: "slug", page.slug | where: "lang", lang | where: "type", "privacy"
+          | first %}
+          {% if privacy_page %}
+          <a href="{{ privacy_page.url }}" class="sidebar-btn sidebar-btn-privacy">
+            🔒 {% if lang == 'en' %}Privacy Policy{% else %}Gizlilik Politikası{% endif %}
+          </a>
+          {% endif %}
+          {% assign terms_page = site.apps | where: "slug", page.slug | where: "lang", lang | where: "type", "terms" |
+          first %}
+          {% if terms_page %}
+          <a href="{{ terms_page.url }}" class="sidebar-btn sidebar-btn-terms">
+            📋 {% if lang == 'en' %}Terms of Service{% else %}Hizmet Şartları{% endif %}
+          </a>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </section>

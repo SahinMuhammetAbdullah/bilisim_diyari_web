@@ -34,3 +34,11 @@ defaults:
 
 timezone: "Europe/Istanbul"
 encoding: "utf-8"
+
+exclude:
+  - temp/
+  - vendor/
+  - node_modules/
+  - Gemfile
+  - Gemfile.lock
+  - README.md

@@ -89,7 +89,7 @@
 
     gtag('config', 'G-S9BMDG4GYN');
   </script>
-  
+
   </head>
   <body>
 
@@ -114,8 +114,22 @@
 
           <div class="nav-right">
             <div class="lang-switcher">
+              {% if page.slug %}
+              {% if lang == 'tr' %}
+              {% assign alt_page = site.apps | where: "slug", page.slug | where: "lang", "en" | where: "type", page.type
+              | first %}
+              <a href="/" class="active">TR</a>
+              <a href="{% if alt_page %}{{ alt_page.url }}{% else %}/en/{% endif %}">EN</a>
+              {% else %}
+              {% assign alt_page = site.apps | where: "slug", page.slug | where: "lang", "tr" | where: "type", page.type
+              | first %}
+              <a href="{% if alt_page %}{{ alt_page.url }}{% else %}/{% endif %}">TR</a>
+              <a href="/en/" class="active">EN</a>
+              {% endif %}
+              {% else %}
               <a href="/" {% if lang == 'tr' %}class="active" {% endif %}>TR</a>
               <a href="/en/" {% if lang == 'en' %}class="active" {% endif %}>EN</a>
+              {% endif %}
             </div>
             <div class="hamburger" id="hamburger">
               <span></span><span></span><span></span>
@@ -132,8 +146,22 @@
       <a href="{% if lang == 'en' %}/en/#apps{% else %}/#apps{% endif %}">{{ t.nav.apps }}</a>
       <a href="{% if lang == 'en' %}/en/#contact{% else %}/#contact{% endif %}">{{ t.nav.contact }}</a>
       <div class="lang-switcher" style="margin-top:20px">
+        {% if page.slug %}
+        {% if lang == 'tr' %}
+        {% assign alt_page = site.apps | where: "slug", page.slug | where: "lang", "en" | where: "type", page.type |
+        first %}
+        <a href="/">TR</a>
+        <a href="{% if alt_page %}{{ alt_page.url }}{% else %}/en/{% endif %}">EN</a>
+        {% else %}
+        {% assign alt_page = site.apps | where: "slug", page.slug | where: "lang", "tr" | where: "type", page.type |
+        first %}
+        <a href="{% if alt_page %}{{ alt_page.url }}{% else %}/{% endif %}">TR</a>
+        <a href="/en/">EN</a>
+        {% endif %}
+        {% else %}
         <a href="/" {% if lang == 'tr' %}class="active" {% endif %}>TR</a>
         <a href="/en/" {% if lang == 'en' %}class="active" {% endif %}>EN</a>
+        {% endif %}
       </div>
     </div>
 
